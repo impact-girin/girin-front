@@ -39,6 +39,9 @@ export default function Home() {
         <Text>지역 선택</Text>
       </Flex>
       {list?.map((i, n) => <ListAtom key={n} src={i?.mountainClubImageUrl} title={i?.clubName} id={i?.mountainClubId} location={locationList[i?.zone - 1]} headcount={i?.maxPeople} />)}
+      <Box onClick={e => navigate.push('/camp/creating')} fontWeight={'bold'} padding={'15px 10px'} bottom={'10px'} right={'19px'} position={'fixed'} borderRadius={'400px'} color={'white'} backgroundColor={'#2DD790'}>
+        산악회 만들기
+      </Box>
     </Box >
   </>
 }
