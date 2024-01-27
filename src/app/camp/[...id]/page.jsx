@@ -21,6 +21,16 @@ export default function Home({ params }) {
       detailInfo: ''
     }
   })
+  const [myclubs, setMyclubs] = useState([]);
+  const GetMyList = async e => {
+    await instance.get('mountainClub/my').then(e => {
+      let list = []
+      e.data.myMountainClubList.forEach(e => {
+        list.push(e.mountainClubId);
+      })
+      setMyclubs(list)
+    })
+  }
   const Getinfo = async e => {
     await instance.get(`/mountainClub/${params.id[0]}`).then(e => {
       setInfo(e.data)
@@ -28,6 +38,7 @@ export default function Home({ params }) {
   }
   useEffect(e => {
     Getinfo()
+    GetMyList()
   }, [])
   const naviagate = useRouter()
   return (
@@ -58,7 +69,15 @@ export default function Home({ params }) {
           </Grid>
         </Box>
 
-        <Button onClick={e => naviagate.push(`${info?.contactLink}`)} position={'absolute'} bottom={'19px'} height={'50px'} background={'#2DD790'} color={'white'} width={'calc(100% - 38px)'}>참가하기</Button>
+        <Button onClick={async e => {
+          await instance.post(`/mountainClub/in/${info?.mountainClubId}`).then(e => {
+            // naviagate.push(`${info?.contactLink}`)
+          }).catch(e => {
+            console.log(e)
+          })
+        }} position={'absolute'} bottom={'19px'} height={'50px'} background={'#2DD790'} color={'white'} width={'calc(100% - 38px)'}>
+          {myclubs?.findIndex(e => e === info?.mountainClubId) === -1 ? '참가하기' : '참가중'}
+        </Button>
       </Flex>
     </Box >
   );
