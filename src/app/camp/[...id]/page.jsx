@@ -53,7 +53,7 @@ export default function Home({ params }) {
             </svg>
             <Box>
               <Text lineHeight={'26px'} fontWeight={'bold'}>주최: {info?.clubName}</Text>
-              <Text lineHeight={'26px'} fontWeight={'bold'}>지역: {info?.zone}</Text>
+              <Text lineHeight={'26px'} fontWeight={'bold'}>지역: {locationList[info?.zone - 1]}</Text>
             </Box>
           </Grid>
           <Grid gridTemplateColumns={"20px calc(100% - 100px)"} marginTop={'10px'}>
@@ -82,3 +82,7 @@ export default function Home({ params }) {
     </Box >
   );
 }
+
+const locationList = [
+  '서울', '경기', '경상도', '전라도', '강원도', '인천', '경상도', '충청도', '제주도'
+]

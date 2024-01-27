@@ -10,7 +10,7 @@ import AgeImg from "@/app/assets/age_img.png";
 import ChoseButton from "./choseButton";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const ages = ["40세 이상", "45세 이상", "50세 이상", "55세 이상", "60세 이상", "65세 이상", "70세 이상", '75세 이상', '80세 이상'];
+const ages = ["10대", "20대", "30대", "40대", "50대", "60대", "70대", "80대", "90대"];
 const areas = ["서울", "경기", "경상도", "전라도", "강원도", "인천", "경상도", "충청도", "제주도"];
 
 const Chose = () => {
