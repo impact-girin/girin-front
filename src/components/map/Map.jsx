@@ -22,13 +22,6 @@ const MapComponent = () => {
   const [seeRestaurant, setSeeRestaurant] = useState(false);
 
   useEffect(() => {
-    window.navigator.geolocation.getCurrentPosition((position) => {
-      setLocation({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      });
-    });
-
     instance.get("/mountain/list").then((res) => {
       setMountainData(res.data.mountainList);
     });
@@ -65,7 +58,7 @@ const MapComponent = () => {
         center={{ lat: 37.4022864, lng: 127.1003289 }}
         style={{ width: "100%", height: "100vh", position: "relative" }}
       >
-        <CustomOverlayMap position={location}>
+        <CustomOverlayMap position={{ lat: 37.4022864, lng: 127.1003289 }}>
           <Flex flexDir="column" alignItems="center">
             <Flex
               width="120px"
