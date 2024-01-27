@@ -17,7 +17,8 @@ const Chose = () => {
   // kind = "age" | "area"
   const searchParams = useSearchParams();
   const kind = searchParams.get("kind");
-
+  const name = searchParams.get("name");
+  const age = searchParams.get("age");
   const navigate = useRouter();
 
   const [clickNumber, setClickNumber] = useState(0);
@@ -29,7 +30,7 @@ const Chose = () => {
       </Flex>
       <Image height={81} src={kind === "age" ? AgeImg : AreaImg} marginTop={"16px"} alt="" />
       <Text marginTop="21px" fontSize="20px" fontWeight="600" fontFamily="Pretendard">
-        {kind === "age" ? "“이름”님의 나이대를 알려주세요." : "“이름”님의 지역을 알려주세요."}
+        {kind === "age" ? `“${name}”님의 나이대를 알려주세요.` : `“${name}”님의 지역을 알려주세요.`}
       </Text>
       <Grid templateColumns="repeat(3, 1fr)" gap={"10px"} width={"100%"} marginTop={"25px"}>
         {kind === "age"
@@ -70,7 +71,7 @@ const Chose = () => {
         background={"#2DD790"}
         color={"white"}
         width={"100%"}
-        onClick={() => (kind === "age" ? navigate.push("/signup/chose") : navigate.push("/signup/phone"))}
+        onClick={() => (kind === "age" ? navigate.push(`/signup/chose?name=${name}&age=${clickNumber}`) : navigate.push(`/signup/phone?name=${name}&age=${age}&region=${clickNumber}`))}
       >
         다음으로
       </Button>

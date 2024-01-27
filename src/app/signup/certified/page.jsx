@@ -16,10 +16,16 @@ import Image from "next/image";
 import LeftIcon from "../../../assets/back_button.png";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Certified = () => {
   const [time, setTime] = useState(180); // 남은 시간 (단위: 초)
+
+  const searchParams = useSearchParams();
+  const region = searchParams.get("region");
+  const name = searchParams.get("name");
+  const age = searchParams.get("age");
+  const phone = searchParams.get("phone");
   useEffect(() => {
     const timer = setInterval(() => {
       setTime((prev) => prev - 1);
@@ -85,7 +91,7 @@ const Certified = () => {
           background={"#2DD790"}
           color={"white"}
           width={"100%"}
-          onClick={() => navigate.push("/signup/complete")}
+          onClick={() => navigate.push(`/signup/password?name=${name}&age=${age}&region=${region}&phone=${phone}`)}
         >
           확인
         </Button>

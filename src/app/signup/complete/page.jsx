@@ -3,8 +3,10 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import Checked from "../../../assets/Checked.svg"
 import Image from "next/image"
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const naviagate = useRouter()
   return (
     <Box height={'100vh'}>
       <Flex flexDir='column' height={'100%'} padding={'19px'} justifyContent={'space-around'}>
@@ -16,7 +18,7 @@ export default function Home() {
           <Image width={142} height={142} alt="" src={Checked} />
         </Flex>
 
-        <Button marginTop={'auto'} height={'50px'} background={'#2DD790'} color={'white'} width={'100%'}>확인</Button>
+        <Button onClick={e => naviagate.push('/camp')} marginTop={'auto'} height={'50px'} background={'#2DD790'} color={'white'} width={'100%'}>확인</Button>
       </Flex>
     </Box>
   );

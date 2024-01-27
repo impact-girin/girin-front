@@ -15,9 +15,13 @@ import Image from "next/image";
 import LeftIcon from "../../../assets/back_button.png";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Phone = () => {
+  const searchParams = useSearchParams();
+  const region = searchParams.get("region");
+  const name = searchParams.get("name");
+  const age = searchParams.get("age");
   const [value, setValue] = useState("");
   const [errorNumber, setErrorNumber] = useState(false);
 
@@ -27,7 +31,7 @@ const Phone = () => {
     const regex = /^01[016789]\d{3,4}\d{4}$/;
     if (regex.test(value)) {
       setErrorNumber(false); // 일치할 경우 에러가 아닌 것으로 설정
-      navigate.push("/signup/certified");
+      navigate.push(`/signup/certified?name=${name}&age=${age}&region=${region}&phone=${value}`);
     } else {
       setErrorNumber(true); // 일치하지 않을 경우 에러로 설정
     }
