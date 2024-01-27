@@ -89,10 +89,17 @@ export default function Home() {
     detailInfo: "",
     mountainImageUrl: "",
   });
-  const [mode, setMode] = useState("visit_list"); //mt_info, visit_list, food
+  const [mode, setMode] = useState("mt_info"); //mt_info, visit_list, food
   const navigate = useRouter();
 
-  useEffect((e) => {}, []);
+  useEffect(() => {
+    function handleEvent(message) {
+      setMode(JSON.parse(message.data).type);
+    }
+    window.addEventListener("message", handleEvent);
+
+    return () => window.removeEventListener("message", handleEvent);
+  }, []);
 
   return (
     <>
@@ -116,7 +123,7 @@ export default function Home() {
           flexWrap={"wrap"}
         >
           {visit_list.map((i, n) => (
-            <VisitAtom src={i?.src} user={i?.user} mt_name={mt_infos?.name} />
+            <VisitAtom key={n} src={i?.src} user={i?.user} mt_name={mt_infos?.name} />
           ))}
         </Grid>
       )}
