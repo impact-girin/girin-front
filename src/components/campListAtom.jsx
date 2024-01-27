@@ -17,6 +17,6 @@ export default function ListAtom({ src, title, id, location, headcount, onClick 
         {headcount && <Text color={'gray'}>모집 인원: {headcount}</Text>}
       </Box>
     </Flex>
-    <Image style={{ transform: 'rotate(180deg)', width: '8px', height: '15px' }} src={LeftIcon} />
+    <Image alt="" style={{ transform: 'rotate(180deg)', width: '8px', height: '15px' }} src={LeftIcon} />
   </Flex></Box>
 }
