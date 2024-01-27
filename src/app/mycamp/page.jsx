@@ -29,7 +29,7 @@ export default function Home() {
 
   return <>
     <Box padding={'10px'}>
-      <Text textAlign={'center'} fontWeight={'bold'} fontSize={'20px'}>산악회 정보</Text>
+      <Text textAlign={'center'} fontWeight={'bold'} fontSize={'20px'}>소속</Text>
     </Box>
     <Box>
       <Flex onClick={e => navigate.push('/camp/selectRegion')} borderRadius={'20px'} padding={'2px 0 '} justifyContent={'center'} w={'90px'} fontSize={'14px'} color={'#2DD790'} margin={'16px'} marginBottom={'0'} style={{ border: '1px solid #2DD790' }}>
