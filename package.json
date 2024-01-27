@@ -16,7 +16,11 @@
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
+<<<<<<< HEAD
     "react-kakao-maps-sdk": "^1.1.26",
+=======
+    "recoil": "^0.7.7",
+>>>>>>> main
     "styled-components": "^6.1.8"
   },
   "devDependencies": {

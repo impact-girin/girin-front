@@ -12,9 +12,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import Link from "next/link";
 import LeftIcon from "../../../assets/back_button.png";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Certified = () => {
   const [time, setTime] = useState(180); // 남은 시간 (단위: 초)
@@ -34,29 +35,15 @@ const Certified = () => {
     }
   };
 
+  const navigate = useRouter();
+
   return (
     <Container height={"100vh"}>
-      <Flex
-        flexDir="column"
-        height={"100%"}
-        padding={"19px"}
-        justifyContent={"space-around"}
-      >
+      <Flex flexDir="column" height={"100%"} padding={"19px"} justifyContent={"space-around"}>
         <Link href={"/signup/phone"}>
-          <Image
-            width={8}
-            height={8}
-            style={{ marginBottom: "36px", marginBottom: "19px" }}
-            src={LeftIcon}
-            alt=""
-          />
+          <Image width={8} height={8} style={{ marginBottom: "36px", marginBottom: "19px" }} src={LeftIcon} alt="" />
         </Link>
-        <Text
-          fontSize={"26px"}
-          lineHeight={"26px"}
-          fontWeight={"bold"}
-          marginBottom={"32px"}
-        >
+        <Text fontSize={"26px"} lineHeight={"26px"} fontWeight={"bold"} marginBottom={"32px"}>
           인증번호를 입력해주세요
         </Text>
         <Flex>
@@ -73,12 +60,7 @@ const Certified = () => {
                 placeholder="6자리 숫자"
               />
               <InputRightElement width="90px">
-                <Text
-                  marginRight={"15px"}
-                  fontSize="12px"
-                  fontWeight={400}
-                  color="#70757D"
-                >
+                <Text marginRight={"15px"} fontSize="12px" fontWeight={400} color="#70757D">
                   <span>
                     {parseInt(time / 60)}:{getSeconds(time)}
                   </span>
@@ -102,6 +84,7 @@ const Certified = () => {
           background={"#2DD790"}
           color={"white"}
           width={"100%"}
+          onClick={() => navigate.push("/signup/complete")}
         >
           확인
         </Button>
