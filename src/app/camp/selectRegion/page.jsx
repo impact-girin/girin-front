@@ -50,7 +50,7 @@ const Chose = () => {
         width={"100%"}
         onClick={() => navigate.push("/camp/")}
       >
-        다음으로
+        선택하기
       </Button>
     </Flex>
   );
