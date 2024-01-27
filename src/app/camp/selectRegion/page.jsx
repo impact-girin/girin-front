@@ -5,8 +5,7 @@ import { useState } from "react";
 import { Flex, Text, Grid, Button } from "@chakra-ui/react";
 import Image from "next/image";
 import LeftArrow from "../../../assets/back_button.png";
-import AgeImg from "../../../assets/age_img.png";
-import AreaImg from "../../../assets/area_img.png";
+import AreaImg from "../../assets/area_img.png";
 import ChoseButton from "./choseButton";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -49,9 +48,9 @@ const Chose = () => {
         background={"#2DD790"}
         color={"white"}
         width={"100%"}
-        onClick={() => navigate.push("/camp/created")}
+        onClick={() => navigate.push("/camp/")}
       >
-        다음으로
+        선택하기
       </Button>
     </Flex>
   );

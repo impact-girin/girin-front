@@ -11,9 +11,9 @@ export default function Home() {
   return (
     <Box height={"100vh"}>
       <Flex flexDir="column" height={"100%"} padding={"19px"} justifyContent={"space-around"}>
-        <Link href={""}>
+        <Box onClick={e => navigate.back()}>
           <Image width={8} height={8} style={{ marginBottom: "36px", marginBottom: "19px" }} src={LeftIcon} alt="" />
-        </Link>
+        </Box>
         <Text fontSize={"26px"} lineHeight={"26px"} fontWeight={"bold"} marginBottom={"32px"}>
           이름을 입력해주세요
         </Text>
