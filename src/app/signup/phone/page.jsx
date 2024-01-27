@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Box,
   Button,
   Container,
   Flex,
@@ -44,7 +45,7 @@ const Phone = () => {
         padding={"19px"}
         justifyContent={"space-around"}
       >
-        <Link href={"/"}>
+        <Box onClick={e => navigate.back()}>
           <Image
             width={8}
             height={8}
@@ -52,7 +53,7 @@ const Phone = () => {
             src={LeftIcon}
             alt=""
           />
-        </Link>
+        </Box>
         <Text
           fontSize={"26px"}
           lineHeight={"26px"}
