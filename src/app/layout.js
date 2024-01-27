@@ -1,8 +1,5 @@
-import { Inter } from "next/font/google";
-import { Providers } from './provider';
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Providers } from "./provider";
 
 export const metadata = {
   title: "Create Next App",
@@ -17,6 +14,6 @@ export default function RootLayout({ children }) {
       >
         <Providers>{children}</Providers>
       </body>
-    </html >
+    </html>
   );
 }
