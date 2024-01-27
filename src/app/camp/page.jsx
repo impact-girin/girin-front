@@ -1,10 +1,11 @@
 "use client";
 
+import { instance } from "@/apis/axios";
 import ListAtom from "@/components/campListAtom";
 import { Box, Button, Flex, Input, Link, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const lists = [
   {
@@ -87,8 +88,24 @@ const lists = [
 ]
 
 export default function Home() {
-  const [list, setList] = useState(lists)
+  const [list, setList] = useState([{
+    "mountainClubId": 0,
+    "clubName": "",
+    "zone": "",
+    "maxPeople": 0,
+    "introduce": "",
+    "mountainClubImageUrl": "",
+    "contactLink": ""
+  }])
   const navigate = useRouter();
+  const GetAllList = async e => {
+    await instance.get('/mountainClub/list').then(e => {
+      setList(e.data.mountainClubList)
+    })
+  }
+  useEffect(e => {
+    GetAllList()
+  }, [])
 
   return <>
     <Box padding={'10px'}>
@@ -101,7 +118,7 @@ export default function Home() {
         </svg>
         <Text>지역 선택</Text>
       </Flex>
-      {list?.map((i, n) => <ListAtom key={n} src={i?.img} title={i?.title} id={i?.id} location={i?.location} headcount={i?.headcount} />)}
+      {list?.map((i, n) => <ListAtom key={n} src={i?.mountainClubImageUrl} title={i?.clubName} id={i?.mountainClubId} location={i?.contactLink} headcount={i?.maxPeople} />)}
     </Box >
   </>
 }
