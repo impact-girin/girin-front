@@ -14,12 +14,14 @@
     "@emotion/styled": "^11.11.0",
     "axios": "^1.6.7",
     "framer-motion": "^11.0.3",
+    "lz-string": "^1.5.0",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-kakao-maps-sdk": "^1.1.26",
     "recoil": "^0.7.7",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "eslint": "^8",

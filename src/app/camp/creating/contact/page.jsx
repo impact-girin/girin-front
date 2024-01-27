@@ -1,14 +1,18 @@
 "use client";
 
 import { Box, Button, Flex, Input, Link, Text } from "@chakra-ui/react";
-import LeftIcon from "../../assets/back_button.png";
+import LeftIcon from "../../../assets/back_button.png";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export default function Home() {
   const navigate = useRouter();
-  const [name, setName] = useState('')
+  const searchParams = useSearchParams();
+  const name = searchParams.get('name')
+  const counts = searchParams.get('counts');
+  const intro = searchParams.get('intro');
+  const [contact, setContact] = useState('')
 
   return (
     <Box height={"100vh"}>
@@ -17,18 +21,18 @@ export default function Home() {
           <Image width={8} height={8} style={{ marginBottom: "36px", marginBottom: "19px" }} src={LeftIcon} alt="" />
         </Box>
         <Text fontSize={"24px"} lineHeight={"26px"} fontWeight={"bold"} marginBottom={"32px"}>
-          산악회를 만들기 위해<br /> 필요한 정보를 입력해주세요!
+          산악회를 만들기 위해<br />오픈 채팅방 링크를 달아주세요!
         </Text>
         <Box marginBottom={'24px'}>
-          <Text fontSize={"13px"}>방 제목</Text>
+          <Text fontSize={"13px"}>링크</Text>
           <Input
             padding={"18px 15px"}
             lineHeight={"17px"}
             fontSize={"16px"}
             style={{ border: "1px solid #E0E0E1", width: "100%" }}
-            placeholder="북한산 가실분!"
-            value={name}
-            onChange={e => setName(e.target.value)}
+            placeholder="https://open.kakao.com/"
+            onChange={e => setContact(e.target.value)}
+            value={contact}
           />
         </Box>
         <Button
@@ -37,7 +41,7 @@ export default function Home() {
           background={"#2DD790"}
           color={"white"}
           width={"100%"}
-          onClick={() => navigate.push(`/camp/creating/setintro?name=${name}`)}
+          onClick={() => navigate.push(`/camp/creating/setage?name=${name}&intro=${intro}&counts=${counts}&contact=${contact}`)}
         >
           다음으로
         </Button>
