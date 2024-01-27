@@ -1,3 +1,4 @@
+import Script from "next/script";
 import "./globals.css";
 import { Providers } from "./provider";
 
@@ -9,9 +10,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-      // className={inter.className}
-      >
+      <head>
+        <Script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae9a906a939a63379e927989e814b25e&libraries=services,clusterer&autoload=false"
+          strategy="beforeInteractive"
+        />
+      </head>
+      <body>
         <Providers>{children}</Providers>
       </body>
     </html>
