@@ -11,7 +11,7 @@ import ChoseButton from "./choseButton";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const ages = ["10대", "20대", "30대", "40대", "50대", "60대", "70대", "80대", "90대"];
-const areas = ["서울", "경기", "경상도", "전라도", "강원도", "인천", "등등", "등등", "등등"];
+const areas = ["서울", "경기", "경상도", "전라도", "강원도", "인천", "경상도", "충청도", "제주도"];
 
 const Chose = () => {
   // kind = "age" | "area"
@@ -24,7 +24,7 @@ const Chose = () => {
 
   return (
     <Flex flexDirection={"column"} alignItems="center" padding={"20px"} width={"100%"} height={"100vh"}>
-      <Flex justifyContent="left" width={"100%"} marginBottom={"16px"}>
+      <Flex onClick={e => navigate.back()} justifyContent="left" width={"100%"} marginBottom={"16px"}>
         <Image width={"5px"} height={"5px"} src={LeftArrow} alt="" />
       </Flex>
       <Image height={81} src={kind === "age" ? AgeImg : AreaImg} marginTop={"16px"} alt="" />
@@ -34,35 +34,35 @@ const Chose = () => {
       <Grid templateColumns="repeat(3, 1fr)" gap={"10px"} width={"100%"} marginTop={"25px"}>
         {kind === "age"
           ? ages.map((age, idx) => (
-              <ChoseButton
-                key={idx}
-                isClick={idx + 1 == clickNumber}
-                onClick={() => {
-                  clickNumber != idx + 1
-                    ? setClickNumber(idx + 1)
-                    : clickNumber == 0
+            <ChoseButton
+              key={idx}
+              isClick={idx + 1 == clickNumber}
+              onClick={() => {
+                clickNumber != idx + 1
+                  ? setClickNumber(idx + 1)
+                  : clickNumber == 0
                     ? setClickNumber(idx + 1)
                     : setClickNumber(0);
-                }}
-              >
-                {age}
-              </ChoseButton>
-            ))
+              }}
+            >
+              {age}
+            </ChoseButton>
+          ))
           : areas.map((age, idx) => (
-              <ChoseButton
-                key={idx}
-                isClick={idx + 1 == clickNumber}
-                onClick={() => {
-                  clickNumber != idx + 1
-                    ? setClickNumber(idx + 1)
-                    : clickNumber == 0
+            <ChoseButton
+              key={idx}
+              isClick={idx + 1 == clickNumber}
+              onClick={() => {
+                clickNumber != idx + 1
+                  ? setClickNumber(idx + 1)
+                  : clickNumber == 0
                     ? setClickNumber(idx + 1)
                     : setClickNumber(0);
-                }}
-              >
-                {age}
-              </ChoseButton>
-            ))}
+              }}
+            >
+              {age}
+            </ChoseButton>
+          ))}
       </Grid>
       <Button
         marginTop={"auto"}
