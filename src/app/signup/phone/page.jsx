@@ -45,7 +45,7 @@ const Phone = () => {
         padding={"19px"}
         justifyContent={"space-around"}
       >
-        <Box onClick={e => navigate.back()}>
+        <Box onClick={(e) => navigate.back()}>
           <Image
             width={8}
             height={8}
