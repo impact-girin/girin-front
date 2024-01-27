@@ -132,50 +132,53 @@ const MapComponent = () => {
             </Flex>
           </CustomOverlayMap>
         ))}
-        {seeRestaurant &&
-          restaurantData.map((item) => (
-            <CustomOverlayMap
-              key={item.name}
-              position={{ lat: item.latitude, lng: item.longitude }}
-            >
-              <Flex
-                flexDir="column"
-                alignItems="center"
-                onClick={() => {
-                  setState({
-                    description: item.detailInfo,
-                    height: item.height,
-                    name: item.name,
-                    image: item.mountainImageUrl,
-                  });
-                  navigate.push("/map/mountain");
-                }}
+        {
+          // 식당 맵 리스트
+          seeRestaurant &&
+            restaurantData.map((item) => (
+              <CustomOverlayMap
+                key={item.name}
+                position={{ lat: item.latitude, lng: item.longitude }}
               >
                 <Flex
-                  width="170px"
-                  borderRadius="20px"
-                  backgroundColor="#FFFFFF"
-                  justifyContent="center"
+                  flexDir="column"
                   alignItems="center"
-                  gap="15px"
-                  padding="10px"
-                  boxShadow="0px 10px 60px 0px rgba(45, 215, 144, 0.60);"
+                  onClick={() => {
+                    setState({
+                      description: item.detailInfo,
+                      height: item.height,
+                      name: item.name,
+                      image: item.mountainImageUrl,
+                    });
+                    navigate.push("/map/restaurant");
+                  }}
                 >
-                  <Image src={maker} alt="" />
-                  <Text fontSize="16px" color="#2DD790" fontWeight={600}>
-                    {item.name}
-                  </Text>
+                  <Flex
+                    width="170px"
+                    borderRadius="20px"
+                    backgroundColor="#FFFFFF"
+                    justifyContent="center"
+                    alignItems="center"
+                    gap="15px"
+                    padding="10px"
+                    boxShadow="0px 10px 60px 0px rgba(45, 215, 144, 0.60);"
+                  >
+                    <Image src={maker} alt="" />
+                    <Text fontSize="16px" color="#2DD790" fontWeight={600}>
+                      {item.name}
+                    </Text>
+                  </Flex>
+                  <Box
+                    w="11px"
+                    h="11px"
+                    marginTop="2px"
+                    borderRadius="100%"
+                    backgroundColor="#2DD790"
+                  />
                 </Flex>
-                <Box
-                  w="11px"
-                  h="11px"
-                  marginTop="2px"
-                  borderRadius="100%"
-                  backgroundColor="#2DD790"
-                />
-              </Flex>
-            </CustomOverlayMap>
-          ))}
+              </CustomOverlayMap>
+            ))
+        }
       </Map>
     </Flex>
   );
