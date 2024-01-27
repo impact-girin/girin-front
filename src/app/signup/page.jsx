@@ -4,9 +4,11 @@ import { Box, Button, Flex, Input, Link, Text } from "@chakra-ui/react";
 import LeftIcon from "../assets/back_button.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
   const navigate = useRouter();
+  const [name, setName] = useState('')
 
   return (
     <Box height={"100vh"}>
@@ -25,6 +27,8 @@ export default function Home() {
             fontSize={"16px"}
             style={{ border: "1px solid #E0E0E1", width: "100%" }}
             placeholder="이름을 입력해주세요"
+            onChange={e => setName(e.target.value)}
+            value={name}
           />
         </Box>
         <Button
@@ -33,7 +37,7 @@ export default function Home() {
           background={"#2DD790"}
           color={"white"}
           width={"100%"}
-          onClick={() => navigate.push("/signup/chose")}
+          onClick={() => navigate.push(`/signup/chose?kind=age&name=${name}`)}
         >
           다음으로
         </Button>
