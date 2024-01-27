@@ -5,24 +5,34 @@ import HanOk from '../../../assets/han_ok.png'
 import Image from "next/image"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { instance } from "@/apis/axios";
 
 export default function Home({ params }) {
   const [info, setInfo] = useState({
-    name: '한사랑 산악회',
+    mountainClubId: 0,
+    clubName: '한사랑 산악회',
     zone: '서울특별시/까치산',
-    age: '60',
-    introduce: '레츠고 북한산',
-    maxPeople: 6,
+    currentPeople: 0,
+    introduce: '',
     mountainClubImageUrl: '',
-    contactLink: '#'
+    contactLink: '',
+    mountainInfo: {
+      height: '',
+      detailInfo: ''
+    }
   })
+  const Getinfo = async e => {
+    await instance.get(`/mountainClub/${params.id[0]}`).then(e => {
+      setInfo(e.data)
+    })
+  }
   useEffect(e => {
-    console.log(params.id[0])
+    Getinfo()
   }, [])
   const naviagate = useRouter()
   return (
     <Box height={'100vh'}>
-      <Image style={{ width: '100%' }} width={0} height={0} alt="" src={info?.mountainClubImageUrl ? info?.mountainClubImageUrl : HanOk} />
+      <Image style={{ width: '100%' }} width={500} height={500} alt="" src={info?.mountainClubImageUrl ? info?.mountainClubImageUrl : HanOk} />
       <Flex flexDir='column' padding={'19px'} justifyContent={'space-around'}>
         <Box >
           <Text fontSize={'26px'} lineHeight={'26px'} fontWeight={'bolder'} marginBottom={'28px'}>{info?.introduce}</Text>
@@ -31,7 +41,7 @@ export default function Home({ params }) {
               <path fill-rule="evenodd" clip-rule="evenodd" d="M5.00003 7.49189C4.05248 7.49189 3.28138 6.67781 3.28138 5.67664C3.28138 4.67546 4.05248 3.86072 5.00003 3.86072C5.94759 3.86072 6.71806 4.67546 6.71806 5.67664C6.71806 6.67781 5.94759 7.49189 5.00003 7.49189ZM8.52526 1.62483C7.56389 0.577217 6.31179 0 5.00003 0C3.68702 0 2.43492 0.577218 1.47293 1.6255C0.496487 2.6897 -0.0397695 4.11948 0.00230213 5.54859C0.120982 9.5984 4.63583 12.7519 4.82861 12.8839L4.99752 13L5.16832 12.8859C5.36047 12.7572 9.87846 9.68001 9.99777 5.54792C10.0392 4.11948 9.50233 2.68904 8.52526 1.62483Z" fill="#141416" />
             </svg>
             <Box>
-              <Text lineHeight={'26px'} fontWeight={'bold'}>주최: {info?.name}</Text>
+              <Text lineHeight={'26px'} fontWeight={'bold'}>주최: {info?.clubName}</Text>
               <Text lineHeight={'26px'} fontWeight={'bold'}>지역: {info?.zone}</Text>
             </Box>
           </Grid>
@@ -42,8 +52,8 @@ export default function Home({ params }) {
             </svg>
 
             <Box>
-              <Text lineHeight={'26px'} fontWeight={'bold'}>연령: {info?.age}세 이상</Text>
-              <Text lineHeight={'26px'} fontWeight={'bold'}>인원: {info?.maxPeople}명이 참가했어요.</Text>
+              {/* <Text lineHeight={'26px'} fontWeight={'bold'}>연령: {info?.age}세 이상</Text> */}
+              <Text lineHeight={'26px'} fontWeight={'bold'}>인원: {info?.currentPeople}명이 참가했어요.</Text>
             </Box>
           </Grid>
         </Box>

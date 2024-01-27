@@ -1,14 +1,17 @@
 "use client";
 
 import { Box, Button, Flex, Input, Link, Text } from "@chakra-ui/react";
-import LeftIcon from "../../assets/back_button.png";
+import LeftIcon from "../../../assets/back_button.png";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export default function Home() {
   const navigate = useRouter();
-  const [name, setName] = useState('')
+  const [intro, setIntro] = useState('')
+
+  const searchParams = useSearchParams();
+  const name = searchParams.get('name')
 
   return (
     <Box height={"100vh"}>
@@ -20,15 +23,15 @@ export default function Home() {
           산악회를 만들기 위해<br /> 필요한 정보를 입력해주세요!
         </Text>
         <Box marginBottom={'24px'}>
-          <Text fontSize={"13px"}>방 제목</Text>
+          <Text fontSize={"13px"}>방 소개</Text>
           <Input
             padding={"18px 15px"}
             lineHeight={"17px"}
             fontSize={"16px"}
             style={{ border: "1px solid #E0E0E1", width: "100%" }}
             placeholder="북한산 가실분!"
-            value={name}
-            onChange={e => setName(e.target.value)}
+            value={intro}
+            onChange={e => setIntro(e.target.value)}
           />
         </Box>
         <Button
@@ -37,7 +40,7 @@ export default function Home() {
           background={"#2DD790"}
           color={"white"}
           width={"100%"}
-          onClick={() => navigate.push(`/camp/creating/setintro?name=${name}`)}
+          onClick={() => navigate.push(`/camp/creating/selectheadcount?name=${name}&intro=${intro}`)}
         >
           다음으로
         </Button>
