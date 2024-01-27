@@ -7,8 +7,8 @@ import { useEffect } from "react";
 export default function Home() {
   useEffect(e => {
     setTimeout(() => {
-      // window.location.href = '/'
-    }, 5000);
+      window.location.href = '/camp'
+    }, 2000);
   }, [])
   return (
     <Flex height={'70vh'} alignItems={'center'} justifyContent={'center'}>

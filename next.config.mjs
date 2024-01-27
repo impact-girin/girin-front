@@ -13,6 +13,10 @@ const nextConfig = {
         protocol: "http",
         hostname: "localhost",
       },
+      {
+        protocol: 'https',
+        hostname: 'lh5.googleusercontent.com'
+      }
     ]
   },
 };
