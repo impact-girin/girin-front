@@ -4,7 +4,7 @@ import ListAtom from "@/components/campListAtom";
 import { Box, Button, Flex, Input, Link, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const camp_lists = [
   {
@@ -107,10 +107,23 @@ const food_lists = [
 ]
 
 export default function Home() {
-  const [camp_list, setCampList] = useState(camp_lists);
+  const [visit_list, setVisitList] = useState(camp_lists);
   const [food_list, setFoodList] = useState(food_lists);
-  const [mode, setMode] = useState('visit_list');//mt_info, visit_list, food
+  const [mt_infos, setMt_infos] = useState({
+    mountainId: 0,
+    latitude: 0,
+    longitude: 0,
+    name: '',
+    height: '',
+    detailInfo: '',
+    mountainImageUrl: ''
+  })
+  const [mode, setMode] = useState('mt_info');//mt_info, visit_list, food
   const navigate = useRouter();
+
+  useEffect(e => {
+
+  }, [])
 
   return <>
     <Box margin={'auto'} borderRadius={'300px'} style={{ border: '12px solid white' }} height={'30px'} width={'80px'} backgroundColor={'lightgray'}></Box>
@@ -126,7 +139,7 @@ export default function Home() {
       </Box>
     </Flex>
     {mode === 'visit_list' && <Box>
-      {camp_list?.map((i, n) => <ListAtom key={n} src={i?.img} title={i?.title} id={i?.id} location={i?.location} headcount={i?.headcount} />)}
+
     </Box>}
     {mode === 'food' && <Box>
       {food_list?.map((i, n) => <ListAtom onClick={e => { navigate.push(`https://map.naver.com/p/search/${i?.title}`) }} key={n} src={i?.img} title={i?.title} location={i?.location} headcount={i?.headcount} />)}
