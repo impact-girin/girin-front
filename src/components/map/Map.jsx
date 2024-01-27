@@ -3,7 +3,7 @@
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import Image from "next/image";
 import { CustomOverlayMap, Map } from "react-kakao-maps-sdk";
-import maker from "../../assets/marker.svg";
+// import maker from "../../assets/marker.svg";
 import { useEffect, useState } from "react";
 
 const MapComponent = () => {
@@ -37,7 +37,7 @@ const MapComponent = () => {
             padding="10px"
             boxShadow="0px 10px 50px 0px rgba(45, 215, 144, 0.20)"
           >
-            <Image src={maker} alt="" />
+            {/* <Image src={maker} alt="" /> */}
             <Text fontSize="16px" color="#2DD790" fontWeight={600}>
               현 위치
             </Text>
