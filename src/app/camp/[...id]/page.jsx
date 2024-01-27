@@ -21,6 +21,16 @@ export default function Home({ params }) {
       detailInfo: ''
     }
   })
+  const [myclubs, setMyclubs] = useState([]);
+  const GetMyList = async e => {
+    await instance.get('mountainClub/my').then(e => {
+      let list = []
+      e.data.myMountainClubList.forEach(e => {
+        list.push(e.mountainClubId);
+      })
+      setMyclubs(list)
+    })
+  }
   const Getinfo = async e => {
     await instance.get(`/mountainClub/${params.id[0]}`).then(e => {
       setInfo(e.data)
@@ -28,6 +38,7 @@ export default function Home({ params }) {
   }
   useEffect(e => {
     Getinfo()
+    GetMyList()
   }, [])
   const naviagate = useRouter()
   return (
@@ -42,7 +53,7 @@ export default function Home({ params }) {
             </svg>
             <Box>
               <Text lineHeight={'26px'} fontWeight={'bold'}>주최: {info?.clubName}</Text>
-              <Text lineHeight={'26px'} fontWeight={'bold'}>지역: {info?.zone}</Text>
+              <Text lineHeight={'26px'} fontWeight={'bold'}>지역: {locationList[info?.zone - 1]}</Text>
             </Box>
           </Grid>
           <Grid gridTemplateColumns={"20px calc(100% - 100px)"} marginTop={'10px'}>
@@ -58,8 +69,20 @@ export default function Home({ params }) {
           </Grid>
         </Box>
 
-        <Button onClick={e => naviagate.push(`${info?.contactLink}`)} position={'absolute'} bottom={'19px'} height={'50px'} background={'#2DD790'} color={'white'} width={'calc(100% - 38px)'}>참가하기</Button>
+        <Button onClick={async e => {
+          await instance.post(`/mountainClub/in/${info?.mountainClubId}`).then(e => {
+            // naviagate.push(`${info?.contactLink}`)
+          }).catch(e => {
+            console.log(e)
+          })
+        }} position={'absolute'} bottom={'19px'} height={'50px'} background={'#2DD790'} color={'white'} width={'calc(100% - 38px)'}>
+          {myclubs?.findIndex(e => e === info?.mountainClubId) === -1 ? '참가하기' : '참가중'}
+        </Button>
       </Flex>
     </Box >
   );
 }
+
+const locationList = [
+  '서울', '경기', '경상도', '전라도', '강원도', '인천', '경상도', '충청도', '제주도'
+]

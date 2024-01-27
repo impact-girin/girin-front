@@ -118,7 +118,11 @@ export default function Home() {
         </svg>
         <Text>지역 선택</Text>
       </Flex>
-      {list?.map((i, n) => <ListAtom key={n} src={i?.mountainClubImageUrl} title={i?.clubName} id={i?.mountainClubId} location={i?.contactLink} headcount={i?.maxPeople} />)}
+      {list?.map((i, n) => <ListAtom key={n} src={i?.mountainClubImageUrl} title={i?.clubName} id={i?.mountainClubId} location={locationList[i?.zone - 1]} headcount={i?.maxPeople} />)}
     </Box >
   </>
 }
+
+const locationList = [
+  '서울', '경기', '경상도', '전라도', '강원도', '인천', '경상도', '충청도', '제주도'
+]
