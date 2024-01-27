@@ -11,12 +11,7 @@ import { instance } from "@/apis/axios";
 
 const RestaurantPage = () => {
   const onClickButton = () => {
-    instance.put("/reward/control", {
-      params: {
-        operator: "minus",
-        point: 500,
-      },
-    });
+    instance.put("/reward/control?operator=minus&point=500");
   };
 
   return (

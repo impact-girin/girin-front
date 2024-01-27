@@ -7,7 +7,7 @@ export const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    const accessToken = localStorage.get("access_token");
+    const accessToken = localStorage.getItem("access");
     const returnConfig = {
       ...config,
     };
