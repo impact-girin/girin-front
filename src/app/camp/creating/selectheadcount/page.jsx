@@ -35,7 +35,7 @@ export default function Home() {
         <Flex alignItems={'center'} justifyContent={'space-between'} padding={'15px 0'} width={'100%'} style={{ borderBottom: '1px solid gray' }}>
           <Box>
             <Text marginBottom={'10px'} fontWeight={'bold'} fontSize={'20px'}>산악회 프로필</Text>
-            <Text fontSize={'14px'}>사람들이 산악회에 흥미를<br /> 느낄 수 있도록 사진을 등록해주세요</Text>
+            <Text fontSize={'14px'}>사람들이 <span style={{ color: '#2DD790' }}>당신</span>님의 산악회에 흥미를<br /> 느낄 수 있도록 사진을 등록해주세요</Text>
           </Box>
           <Image style={{ borderRadius: '300px', border: '3px solid #2DD790' }} width={100} height={100} alt="" src={'https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png'} />
         </Flex>
