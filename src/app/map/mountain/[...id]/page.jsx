@@ -8,73 +8,9 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const visit_lists = [
-  {
-    user: "김강현",
-    src: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    user: "김강현",
-    src: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    user: "김강현",
-    src: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    user: "김강현",
-    src: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    user: "김강현",
-    src: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    user: "김강현",
-    src: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    user: "김강현",
-    src: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    user: "김강현",
-    src: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    user: "김강현",
-    src: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    user: "김강현",
-    src: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    user: "김강현",
-    src: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
 ];
 
 const food_lists = [
-  {
-    title: "최강 돼지",
-    location: "서울",
-    img: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    title: "최강 돼지",
-    location: "서울",
-    img: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    title: "최강 돼지",
-    location: "서울",
-    img: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
-  {
-    title: "최강 돼지",
-    location: "서울",
-    img: "https://velog.velcdn.com/images/kimgh06/profile/8dcc0c72-4a46-407a-8a8b-2bfd7c38d29a/image.png",
-  },
 ];
 
 export default function Home() {
@@ -89,7 +25,7 @@ export default function Home() {
     detailInfo: "",
     mountainImageUrl: "",
   });
-  const [mode, setMode] = useState("mt_info"); //mt_info, visit_list, food
+  const [mode, setMode] = useState("visit_list"); //mt_info, visit_list, food
   const navigate = useRouter();
 
   useEffect(() => {
@@ -115,7 +51,9 @@ export default function Home() {
         <Text textAlign={'center'} fontWeight={'bold'} color={mode === 'food' ? '#2DD790' : 'black'} >식&nbsp;&nbsp;&nbsp;당</Text>
       </Box>
     </Flex> */}
-      {mode === "visit_list" && (
+      {mode === "visit_list" && (visit_list.length === 0 ?
+        <Teong />
+        :
         <Grid
           gridTemplateColumns={"165px 165px"}
           margin={"20px 19px"}
@@ -129,7 +67,8 @@ export default function Home() {
       )}
       {mode === "food" && (
         <Box>
-          {food_list?.map((i, n) => (
+          {food_list?.map((i, n) => (food_list.length === 0 ?
+            <Teong /> :
             <ListAtom
               onClick={(e) => {
                 navigate.push(`https://map.naver.com/p/search/${i?.title}`);
@@ -145,4 +84,11 @@ export default function Home() {
       )}
     </>
   );
+}
+
+function Teong() {
+  return <Flex direction='column' h={'100vh'} justifyContent={'center'} alignItems={'center'} >
+    <Text fontSize={'100px'} fontWeight={'bold'} color={'#2DD790'}>텅</Text>
+    <Text color={'gray'}>해당 지역에 만들어진 산악회가 없어요.</Text>
+  </Flex >
 }
