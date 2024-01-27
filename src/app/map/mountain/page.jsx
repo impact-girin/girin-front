@@ -5,6 +5,8 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import Image from "next/image";
 import { useRecoilState } from "recoil";
 import shoe from "../../../assets/shoe.png";
+import mountain from "../../../assets/mountain.png";
+import maker from "../../../assets/maker.png";
 
 const MountainInfo = () => {
   const [state, setState] = useRecoilState(infoState);
@@ -22,7 +24,7 @@ const MountainInfo = () => {
         height="240px"
         position="absolute"
         top="0%"
-        backgroundImage="https://lh5.googleusercontent.com/p/AF1QipNb59ZuCozBSFYU7n0FcsyXlH3o8IUaFPV9HQ4k=w426-h240-k-no"
+        backgroundImage={`url(${state.image})`}
       />
       <Box
         position="absolute"
@@ -39,7 +41,7 @@ const MountainInfo = () => {
         width="100%"
         height="200px"
         right="0%"
-        top="42%"
+        top="40%"
         flexDir="column"
         zIndex="2"
         background="linear-gradient(180deg, #2DD790 5.06%, rgba(217, 217, 217, 0.00) 95.58%);"
@@ -49,16 +51,29 @@ const MountainInfo = () => {
           {state.name}
         </Text>
         <Text
+          display="flex"
           marginBottom="16px"
           width="320px"
           fontSize="16px"
           color="white"
           fontWeight={400}
         >
+          <Image
+            src={maker}
+            alt=""
+            style={{ height: "14px", margin: "5px 14px 0 0" }}
+          />{" "}
           {state.description}
         </Text>
-        <Text fontSize="16px" color="white" fontWeight={400}>
-          {state.height}
+        <Text
+          display="flex"
+          alignItems="center"
+          fontSize="16px"
+          color="white"
+          fontWeight={400}
+        >
+          <Image src={mountain} alt="" style={{ marginRight: "5px" }} /> 높이:{" "}
+          {state.height}m
         </Text>
         <Flex width="100%" justifyContent="center" alignItems="center">
           <Flex
