@@ -171,7 +171,7 @@ const MyPage = () => {
               포인트
             </Text>
             <Text fontSize="18px" fontWeight={500} color="#70757D">
-              {data.rewardPoint}
+              {data.rewardPoint}포인트
             </Text>
           </Flex>
         </Flex>
