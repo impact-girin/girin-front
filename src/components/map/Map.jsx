@@ -97,6 +97,8 @@ const MapComponent = () => {
                   height: item.height,
                   name: item.name,
                   image: item.mountainImageUrl,
+                  lat: item.latitude,
+                  lng: item.longitude,
                 });
                 navigate.push("/map/mountain");
               }}
@@ -142,6 +144,8 @@ const MapComponent = () => {
                       height: item.height,
                       name: item.name,
                       image: item.mountainImageUrl,
+                      lat: item.latitude,
+                      lng: item.longitude,
                     });
                     navigate.push("/map/restaurant");
                   }}
