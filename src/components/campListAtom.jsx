@@ -10,7 +10,7 @@ export default function ListAtom({ src, title, id, location, headcount, onClick 
 
   return <Box onClick={onClick}><Flex padding={'16px'} justifyContent={'space-between'} alignItems={'center'} onClick={e => id && navigate.push(`/camp/${id}`)}>
     <Flex alignItems={'center'}>
-      {src && <Image width={30} height={30} style={{ borderRadius: '300px', width: '80px', marginRight: '10px' }} src={src} />}
+      {src && <Image width={30} height={30} style={{ borderRadius: '50%', width: '80px', marginRight: '10px', height: '80px' }} src={src} />}
       <Box>
         <Text color={'gray'} fontSize={'14px'}>{location}</Text>
         <Text fontWeight={'bold'} marginBottom={'5px'}>{title}</Text>
