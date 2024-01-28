@@ -41,7 +41,7 @@ export default function Restaurnat() {
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C3.584 16 0 12.424 0 8C0 3.584 3.584 0 8 0C12.424 0 16 3.584 16 8C16 12.424 12.424 16 8 16ZM10.5519 10.9679C10.6479 11.0239 10.7519 11.0559 10.8639 11.0559C11.0639 11.0559 11.2639 10.9519 11.3759 10.7599C11.5439 10.4799 11.4559 10.1119 11.1679 9.93595L8.31992 8.23995V4.54395C8.31992 4.20795 8.04792 3.94395 7.71992 3.94395C7.39192 3.94395 7.11992 4.20795 7.11992 4.54395V8.58395C7.11992 8.79195 7.23192 8.98395 7.41592 9.09595L10.5519 10.9679Z" fill="#141416" />
         </svg>
-        <Text fontWeight={'bold'} marginLeft={'5px'}>영업 시간: {info?.startTime.substr(0, 5)}부터 {info?.endTime.substr(0, 5)}까지</Text>
+        <Text fontWeight={'bold'} marginLeft={'5px'}>상태: {info?.isUseAvailable ? <span style={{ color: "#2DD790" }}>영업중</span> : <span style={{ color: '#FF4040' }}>영업종료</span>} 영업 시간: {info?.startTime.substr(0, 5)}부터 {info?.endTime.substr(0, 5)}까지</Text>
       </Flex>
     </Box>
     <Box>
