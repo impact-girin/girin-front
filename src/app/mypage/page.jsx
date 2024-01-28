@@ -18,7 +18,7 @@ const areas = ["서울", "경기", "경상도", "전라도", "강원도", "인�
 const MyPage = () => {
   const [data, setData] = useState({});
 
-  const navigate = useRouter;
+  const navigate = useRouter();
 
   useEffect(() => {
     instance.get("/user/my").then((res) => setData(res.data));
@@ -26,7 +26,7 @@ const MyPage = () => {
 
   const onClickLogOut = () => {
     localStorage.removeItem("access");
-    navigate("/login");
+    navigate.push("/login");
   };
 
   return (
