@@ -3,7 +3,7 @@
 import { instance } from "@/apis/axios";
 import ListAtom from "@/components/campListAtom";
 import VisitAtom from "@/components/visitAtom";
-import { rewardState } from "@/store/atom";
+import { infoState, rewardState } from "@/store/atom";
 import { Box, Button, Flex, Grid, Input, Link, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 
@@ -14,9 +14,11 @@ const visit_lists = [];
 
 const food_lists = [];
 
-export default function Home() {
+export default function Home({ params }) {
   const [visit_list, setVisitList] = useState([]);
   const [food_list, setFoodList] = useState(food_lists);
+  const [state, setState] = useRecoilState(infoState);
+
   const [mt_infos, setMt_infos] = useState({
     mountainId: 0,
     latitude: 0,
@@ -27,7 +29,7 @@ export default function Home() {
     mountainImageUrl: "",
   });
   const [time, setTime] = useState(0); // 1200초는 20분
-  const [mode, setMode] = useState("visit_list"); //mt_info, visit_list, food
+  const [mode, setMode] = useState("food"); //mt_info, visit_list, food
   const navigate = useRouter();
   const [location, setLocation] = useState({
     lat: 0,
@@ -37,7 +39,11 @@ export default function Home() {
 
   useEffect(() => {
     function handleEvent(message) {
-      setMode(JSON.parse(message.data).type);
+      try {
+        setMode(JSON.parse(message.data).type);
+      } catch (e) {
+        console.log(e)
+      }
     }
     window.addEventListener("message", handleEvent);
 
@@ -72,25 +78,20 @@ export default function Home() {
   }, [location.lat, location.lng, setIsReward, time]);
 
   useEffect(() => {
-    instance.get("/guestbook/list?mountain-name=남산").then((res) => {
+    instance.get(`/guestbook/list?mountain-name=${decodeURI(params.id[0])}`).then((res) => {
       setVisitList(res.data.guestBookList);
     });
+    GetRestaurantList();
   }, []);
+
+  const GetRestaurantList = async e => {
+    await instance.get(`/restaurant/list?name=${decodeURI(params.id[0])}`).then(e => {
+      setFoodList(e.data.restaurantList)
+    })
+  }
 
   return (
     <>
-      {/* <Box margin={'auto'} borderRadius={'300px'} style={{ border: '12px solid white' }} height={'30px'} width={'80px'} backgroundColor={'lightgray'}></Box>
-    <Flex justifyContent={'space-around'} padding={'0 10px'} style={{ boxShadow: '0 3px 0 1px lightgray' }}>
-      <Box onClick={e => setMode('mt_info')} padding={'10px'} style={{ borderBottom: mode === 'mt_info' ? '3px solid #2DD790' : 'none' }}>
-        <Text textAlign={'center'} fontWeight={'bold'} color={mode === 'mt_info' ? '#2DD790' : 'black'} >산정보</Text>
-      </Box>
-      <Box onClick={e => setMode('visit_list')} padding={'10px'} style={{ borderBottom: mode === 'visit_list' ? '3px solid #2DD790' : 'none' }}>
-        <Text textAlign={'center'} fontWeight={'bold'} color={mode === 'visit_list' ? '#2DD790' : 'black'} >방명록</Text>
-      </Box>
-      <Box onClick={e => setMode('food')} padding={'10px'} style={{ borderBottom: mode === 'food' ? '3px solid #2DD790' : 'none' }}>
-        <Text textAlign={'center'} fontWeight={'bold'} color={mode === 'food' ? '#2DD790' : 'black'} >식&nbsp;&nbsp;&nbsp;당</Text>
-      </Box>
-    </Flex> */}
       {mode === "visit_list" &&
         (visit_list.length === 0 ? (
           <Teong />
@@ -119,13 +120,12 @@ export default function Home() {
             ) : (
               <ListAtom
                 onClick={(e) => {
-                  navigate.push(`https://map.naver.com/p/search/${i?.title}`);
+                  navigate.push(`/restaurant?id=${i?.restaurantId}`);
                 }}
                 key={n}
-                src={i?.img}
-                title={i?.title}
+                src={i?.restaurantImageUrl}
+                title={i?.name}
                 location={i?.location}
-                headcount={i?.headcount}
               />
             )
           )}

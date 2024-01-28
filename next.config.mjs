@@ -19,6 +19,9 @@ const nextConfig = {
       }, {
         protocol: 'https',
         hostname: 's3.ap-northeast-2.amazonaws.com'
+      }, {
+        protocol: 'https',
+        hostname: 'img.freepik.com'
       }
     ]
   },
