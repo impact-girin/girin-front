@@ -35,7 +35,7 @@ export default function Restaurnat() {
         <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M7.50005 10.9497C6.07872 10.9497 4.92207 9.75988 4.92207 8.29662C4.92207 6.83337 6.07872 5.64259 7.50005 5.64259C8.92138 5.64259 10.0771 6.83337 10.0771 8.29662C10.0771 9.75988 8.92138 10.9497 7.50005 10.9497ZM12.7879 2.37476C11.3458 0.843625 9.46768 0 7.50005 0C5.53053 0 3.65238 0.843626 2.20939 2.37573C0.74473 3.9311 -0.0596542 6.02077 0.0034532 8.10947C0.181473 14.0284 6.95375 18.6373 7.24291 18.8303L7.49628 19L7.75248 18.8332C8.0407 18.6451 14.8177 14.1477 14.9966 8.1085C15.0588 6.02077 14.2535 3.93013 12.7879 2.37476Z" fill="#141416" />
         </svg>
-        <Text fontWeight={'bold'} marginLeft={'5px'}>위도: {info?.latitude}, 경도: {info?.longitude}</Text>
+        <Text fontWeight={'bold'} marginLeft={'5px'}>주소: {info?.restaurantAddress}</Text>
       </Flex>
       <Flex alignItems={'center'}>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

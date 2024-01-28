@@ -125,7 +125,7 @@ export default function Home({ params }) {
                 key={n}
                 src={i?.restaurantImageUrl}
                 title={i?.name}
-                location={i?.location}
+                location={i?.restaurantAddress}
               />
             )
           )}
