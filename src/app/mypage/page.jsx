@@ -12,6 +12,9 @@ import { useEffect, useState } from "react";
 import { instance } from "@/apis/axios";
 import { useRouter } from "next/navigation";
 
+const ages = ["10대", "20대", "30대", "40대", "50대", "60대", "70대", "80대", "90대"];
+const areas = ["서울", "경기", "경상도", "전라도", "강원도", "인천", "경상도", "충청도", "제주도"];
+
 const MyPage = () => {
   const [data, setData] = useState({});
 
@@ -96,7 +99,7 @@ const MyPage = () => {
               나이대
             </Text>
             <Text fontSize="18px" fontWeight={500} color="#70757D">
-              {data.age}
+              {ages[data.age - 1]}
             </Text>
           </Flex>
         </Flex>
@@ -120,7 +123,7 @@ const MyPage = () => {
               지역
             </Text>
             <Text fontSize="18px" fontWeight={500} color="#70757D">
-              {data.zone}
+              {areas[data.zone - 1]}
             </Text>
           </Flex>
         </Flex>

@@ -89,6 +89,6 @@ export default function Home() {
 function Teong() {
   return <Flex direction='column' h={'100vh'} justifyContent={'center'} alignItems={'center'} >
     <Text fontSize={'100px'} fontWeight={'bold'} color={'#2DD790'}>텅</Text>
-    <Text color={'gray'}>해당 지역에 만들어진 산악회가 없어요.</Text>
+    <Text color={'gray'}>해당 지역에 만들어진 방명록이 없어요.</Text>
   </Flex >
 }
