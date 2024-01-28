@@ -22,6 +22,9 @@ const nextConfig = {
       }, {
         protocol: 'https',
         hostname: 'img.freepik.com'
+      }, {
+        protocol: 'https',
+        hostname: 'streetviewpixels-pa.googleapis.com'
       }
     ]
   },
