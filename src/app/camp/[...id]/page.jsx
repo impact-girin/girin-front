@@ -71,7 +71,7 @@ export default function Home({ params }) {
 
         <Button onClick={async e => {
           await instance.post(`/mountainClub/in/${info?.mountainClubId}`).then(e => {
-            // naviagate.push(`${info?.contactLink}`)
+            naviagate.push(`/mycamp`)
           }).catch(e => {
             console.log(e)
           })

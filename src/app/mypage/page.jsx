@@ -66,7 +66,7 @@ const MyPage = () => {
           }}
         >
           <Image
-            style={{ marginRight: "5px", height: "20px" }}
+            style={{ marginRight: "5px", height: "20px", marginTop: '4px' }}
             src={Subtract}
             alt=""
           />
@@ -90,7 +90,7 @@ const MyPage = () => {
           }}
         >
           <Image
-            style={{ marginRight: "5px", height: "20px" }}
+            style={{ marginRight: "5px", height: "20px", marginTop: '4px' }}
             src={calander}
             alt=""
           />
@@ -114,7 +114,7 @@ const MyPage = () => {
           }}
         >
           <Image
-            style={{ marginRight: "5px", height: "20px" }}
+            style={{ marginRight: "5px", height: "20px", marginTop: '4px' }}
             src={mymaker}
             alt=""
           />
@@ -138,7 +138,7 @@ const MyPage = () => {
           }}
         >
           <Image
-            style={{ marginRight: "5px", height: "20px" }}
+            style={{ marginRight: "5px", height: "20px", marginTop: '4px' }}
             src={phone}
             alt=""
           />
@@ -162,7 +162,7 @@ const MyPage = () => {
           }}
         >
           <Image
-            style={{ marginRight: "5px", height: "20px" }}
+            style={{ marginRight: "5px", height: "20px", marginTop: '4px' }}
             src={Vector}
             alt=""
           />
