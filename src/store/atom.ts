@@ -7,5 +7,14 @@ export const infoState = atom({
     description: "",
     height: "",
     image: "",
+    lat: 0,
+    lng: 0,
+  },
+});
+
+export const rewardState = atom({
+  key: "reward",
+  default: {
+    isReward: false,
   },
 });

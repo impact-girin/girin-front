@@ -1,15 +1,49 @@
 "use client";
 
-import { infoState } from "@/store/atom";
+import { infoState, rewardState } from "@/store/atom";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import Image from "next/image";
 import { useRecoilState } from "recoil";
 import shoe from "../../../assets/shoe.png";
 import mountain from "../../../assets/mountain.png";
 import maker from "../../../assets/maker.png";
+import { useEffect, useState } from "react";
 
 const MountainInfo = () => {
+  const [location, setLocation] = useState({
+    lat: 0,
+    lng: 0,
+  });
   const [state, setState] = useRecoilState(infoState);
+  const [isReward, setIsReward] = useRecoilState(rewardState);
+  const [time, setTime] = useState(0); // 1200초는 20분
+
+  // 위치를 비교해 리워드 성공 여부를 체크하는 hook
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime((prev) => prev + 1);
+    }, 1000);
+
+    // 컴포넌트가 언마운트될 때 타이머 정리
+    time === 1200 && clearInterval(timer);
+  }, [time]);
+
+  useEffect(() => {
+    window.navigator.geolocation.getCurrentPosition((position) => {
+      setLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+
+    if (time === 1200) {
+      if (location.lat === state.lat && location.lng === state.lng) {
+        setIsReward(true);
+      } else {
+        setIsReward(false);
+      }
+    }
+  }, [state, location, isReward, setIsReward, time]);
 
   return (
     <Flex
