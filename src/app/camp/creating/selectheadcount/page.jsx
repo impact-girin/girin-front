@@ -42,7 +42,7 @@ export default function Home() {
             <Text fontSize={'14px'}>사람들이 <span style={{ color: '#2DD790' }}>당신</span>님의 산악회에 흥미를<br /> 느낄 수 있도록 사진을 등록해주세요</Text>
           </Box>
           <Image style={{ borderRadius: '300px', border: '3px solid #2DD790' }} width={100} height={100} alt="" src={img} />
-          <input type="file" onChange={e => {
+          <input style={{ width: '100px' }} type="file" onChange={e => {
             var fReader = new FileReader();
             fReader.readAsDataURL(e.target.files[0]);
             fReader.onloadend = function (event) {
